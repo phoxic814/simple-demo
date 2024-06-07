@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.simple.grpc";
+option java_outer_classname = "PaymentProto";
+
+service PaymentService {
+  rpc doPay (PayRequest) returns (PayResponse) {}
+  rpc doPayStream(stream PayRequest) returns(stream PayResponse);
+}
+
+message PayRequest {
+  string order = 1;
+  int32 count = 2;
+  string amount = 3;
+}
+
+message PayResponse {
+  int32 code = 1;
+  int32 count = 2;
+  string message = 3;
+}
